@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// app/layout.tsx
+import Header from "../components/server/PropertySearch"; // Add search component here
+import Footer from "../components/server/Footer"; // Create footer component later
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +22,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Property Listing Platform" />
+        <title>Property Listing Platform</title>
+      </head>
+
+      <body className="font-sans bg-gray-50">
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
