@@ -10,7 +10,7 @@ export default function PropertiesPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const fetchProperties = useCallback(async () => {
+  const fetchProperties = useCallback(async (page: number) => {
     setLoading(true);
     try {
       const response = await fetch(`/api/properties?page=${page}&limit=10`);
@@ -26,7 +26,7 @@ export default function PropertiesPage() {
   }, []);
 
   useEffect(() => {
-    fetchProperties();
+    fetchProperties(page);
   }, [page]);
 
   const handlePageChange = (newPage: number) => {
