@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PropertyList from "@/components/server/PropertyList";
 import Skeleton from "@/components/server/Skeleton";
 import { Property } from "../../../lib/types";
@@ -10,14 +10,20 @@ export default function PropertiesPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const fetchProperties = async () => {
+  const fetchProperties = useCallback(async () => {
     setLoading(true);
-    const response = await fetch(`/api/properties?page=${page}&limit=10`);
-    const data = await response.json();
-    setProperties(data.data);
-    setTotalPages(data.totalPages);
-    setLoading(false);
-  };
+    try {
+      const response = await fetch(`/api/properties?page=${page}&limit=10`);
+
+      const data = await response.json();
+      setProperties(data.data);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error("Failed to fetch properties:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     fetchProperties();

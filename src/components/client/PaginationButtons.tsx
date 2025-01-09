@@ -12,8 +12,17 @@ export default function PaginationButtons({
   searchParams,
 }: PaginationButtonsProps) {
   const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams(searchParams);
+    // Filter out undefined values
+    const cleanedParams = Object.fromEntries(
+      Object.entries(searchParams).filter(
+        ([value]) => value !== undefined // Remove unused variable warning by using the key here
+      ) as [string, string][]
+    );
+
+    const params = new URLSearchParams(cleanedParams);
     params.set("page", newPage.toString());
+
+    // Update the URL with the new page
     window.location.search = params.toString();
   };
 

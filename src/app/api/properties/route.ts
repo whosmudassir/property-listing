@@ -15,6 +15,10 @@ export async function GET(request: Request) {
 
     // Fetch data based on ID, query, and pagination parameters
     const filteredProperties = await searchProperties({ id, query });
+    // Ensure filteredProperties is always an array
+    const filteredPropertiesArray = Array.isArray(filteredProperties)
+      ? filteredProperties
+      : [filteredProperties];
     const paginatedData = await searchProperties({ id, query, page, limit });
 
     // Return paginated data along with total info
@@ -22,8 +26,8 @@ export async function GET(request: Request) {
       data: paginatedData, // Paginated data
       page,
       limit,
-      totalItems: filteredProperties.length, // Total filtered items (before pagination)
-      totalPages: Math.ceil(filteredProperties.length / limit), // Total pages
+      totalItems: filteredPropertiesArray?.length, // Total filtered items (before pagination)
+      totalPages: Math.ceil(filteredPropertiesArray?.length / limit), // Total pages
       totalDataLength: allProperties.length, // Total length of all properties (unfiltered)
     });
   } catch (error: unknown) {
