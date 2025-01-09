@@ -1,5 +1,6 @@
 import React from "react";
 import { Property } from "../../../lib/types";
+import Image from "next/image";
 
 interface DetailsModalProps {
   closeModal: () => void;
@@ -17,10 +18,12 @@ const DetailsModal = ({ closeModal, data }: DetailsModalProps) => {
         onClick={(e) => e.stopPropagation()} // Prevent modal close on content click
       >
         <h3 className="text-2xl font-semibold mb-4">{data.title}</h3>
-        <img
+        <Image
           src={data.images[0]}
           alt={data.title}
           className="w-full h-48 object-cover mb-4"
+          width={100}
+          height={48}
         />
         <p className="text-lg text-gray-600">{data.location}</p>
         <p className="text-sm text-gray-600">

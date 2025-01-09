@@ -14,8 +14,8 @@ const paginate = (properties: Property[], page: number, limit: number) => {
 
 // Search properties or fetch by ID
 export async function searchProperties(filters: {
-  query?: string;
-  id?: string;
+  query?: string | null | undefined;
+  id?: string | null | undefined;
   page?: number;
   limit?: number;
 }) {

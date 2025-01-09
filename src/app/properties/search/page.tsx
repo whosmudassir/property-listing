@@ -16,14 +16,14 @@ export default function PropertySearch() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(pageParam);
   const [totalPages, setTotalPages] = useState(1);
-  const [limit] = useState(10);
-  let debouncedValue = useDebounce(query, 500);
+  const limit = 10;
+  const debouncedValue = useDebounce(query, 500);
 
   useEffect(() => {
     const fetchFilteredProperties = async () => {
       setLoading(true);
       const response = await fetch(
-        `/api/properties?query=${query}&page=${page}&limit=${limit}`
+        `/api/properties?query=${debouncedValue}&page=${page}&limit=${limit}`
       );
       const data = await response.json();
       setFilteredProperties(data.data);

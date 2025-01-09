@@ -11,10 +11,8 @@ const HomePage = () => {
           Welcome to Property Listings!
         </h1>
         <p className="text-lg text-gray-700 mb-6">
-          Explore a variety of properties to rent or buy. Whether you're looking
-          for a cozy apartment, a spacious house, or an investment property, we
-          have something for everyone. Start by browsing available properties or
-          searching based on your preferences.
+          Explore a variety of properties to rent or buy. Start by browsing
+          available properties or searching based on your preferences.
         </p>
         <div className="space-y-4">
           <button

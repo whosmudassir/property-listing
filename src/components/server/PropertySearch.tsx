@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PropertySearch() {
   return (
     <header className="bg-blue-600 text-white p-4">
@@ -9,15 +11,15 @@ export default function PropertySearch() {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center space-x-4 text-sm sm:text-base">
-          <a href="/" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Home
-          </a>
-          <a href="/properties" className="hover:underline">
+          </Link>
+          <Link href="/properties" className="hover:underline">
             Properties
-          </a>
-          <a href="/properties/search" className="hover:underline">
+          </Link>
+          <Link href="/properties/search" className="hover:underline">
             Search
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

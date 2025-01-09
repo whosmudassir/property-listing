@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DetailsModal from "./DetailsModal";
 import { Property } from "../../../lib/types";
+import Image from "next/image";
 
 interface PropertyCardProps {
   data: Property;
@@ -62,10 +63,12 @@ export default function PropertyCard({ data }: PropertyCardProps) {
         className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
         onClick={() => router.push(`/properties/${data.id}`)}
       >
-        <img
+        <Image
           src={data.images[0]}
           alt={data.title}
           className="w-full h-48 object-cover"
+          width={100}
+          height={48}
         />
         <div className="p-4">
           <h3 className="text-xl font-semibold text-gray-900">{data.title}</h3>

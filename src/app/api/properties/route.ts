@@ -26,7 +26,10 @@ export async function GET(request: Request) {
       totalPages: Math.ceil(filteredProperties.length / limit), // Total pages
       totalDataLength: allProperties.length, // Total length of all properties (unfiltered)
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 404 });
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "An unexpected error occurred";
+
+    return NextResponse.json({ error: errorMessage }, { status: 404 });
   }
 }

@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import PropertyList from "@/components/server/PropertyList";
 import Skeleton from "@/components/server/Skeleton";
+import { Property } from "../../../lib/types";
 
 export default function PropertiesPage() {
-  const [properties, setProperties] = useState<any[]>([]);
+  const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);

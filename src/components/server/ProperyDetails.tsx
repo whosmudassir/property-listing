@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 interface PropertyDetailProps {
   data: {
     id: string;
@@ -16,18 +19,20 @@ export default function PropertyDetail({ data }: PropertyDetailProps) {
     <div className="container  min-h-screen  mx-auto p-6">
       {/* Breadcrumb */}
       <nav className="mb-4">
-        <a href="/properties" className="hover:underline">
+        <Link href="/properties" className="hover:underline">
           Properties
-        </a>{" "}
+        </Link>{" "}
         / <span className="text-gray-600">{data.title}</span>
       </nav>
 
       {/* Property Details */}
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <img
+        <Image
           src={data.images[0]}
           alt={data.title}
           className="w-full h-64 object-cover"
+          width={100}
+          height={100}
         />
         <div className="p-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
